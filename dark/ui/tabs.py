@@ -180,6 +180,8 @@ class TabManager:
             view = QWebEngineView(self.container)
             page = WebPage(self.profile, view)
             view.setPage(page)
+            # Set view reference in page for createWindow to access
+            page.view = view
             self._attach_view(view)
             t = Tab(view=view, widget=None, title="Loading...")
             self.tabs.append(t)
@@ -509,6 +511,8 @@ class TabManager:
             view = QWebEngineView(self.container)
             page = WebPage(self.profile, view)
             view.setPage(page)
+            # Set view reference in page for createWindow to access
+            page.view = view
             
             # Update tab to be web tab
             tab.view = view
@@ -694,28 +698,28 @@ class TabManager:
         from ..core.scheme import register_dark_scheme, DarkUrlSchemeHandler
         from pathlib import Path
         
-        # Create new profile and downloads manager for the new window
-        new_profile = QWebEngineProfile()
+        # Use the SAME profile for shared cookies and sessions
+        new_profile = self.profile
         
-        # Register custom scheme for new window (check if already registered)
-        try:
-            register_dark_scheme()
-        except:
-            pass  # Already registered
-        
+        # Create new downloads manager
         new_downloads = DownloadsManager(new_profile)
+        
+        # Create scheme handler
         pages_dir = Path(__file__).parent.parent / "pages"
         pages_dir.mkdir(parents=True, exist_ok=True)
-        scheme_handler = DarkUrlSchemeHandler(
+        new_scheme_handler = DarkUrlSchemeHandler(
             pages_dir,
             downloads_provider=new_downloads.list,
-            settings_provider=self.settings.all,
-            settings_actions=lambda k, v: None,
+            settings_provider=self.settings.all if self.settings else {},
+            settings_actions=lambda action, value: None,
             downloads_actions=new_downloads.action,
         )
-        new_profile.installUrlSchemeHandler(b"dark", scheme_handler)
+        new_profile.setUrlSchemeHandler("dark", new_scheme_handler)
         
+        # Create new window with shared profile
         new_window = MainWindow(new_profile, self.settings, new_downloads)
+        new_window.tabman.create_tab(link_url)
+        new_window.show()
         
         # Clear all default tabs and create only the specific tab
         new_window.tabman.tabs.clear()
@@ -865,8 +869,16 @@ class TabManager:
             from ..core.scheme import register_dark_scheme, DarkUrlSchemeHandler
             from pathlib import Path
             
-            # Create new profile and downloads manager for the new window
-            new_profile = QWebEngineProfile()
+            # Use the SAME profile for shared cookies and sessions
+            new_profile = self.profile
+            
+            # Ensure profile has proper configuration
+            from PyQt6.QtCore import QStandardPaths
+            from pathlib import Path
+            data_dir = Path(QStandardPaths.writableLocation(QStandardPaths.StandardLocation.AppDataLocation)) / "Dark Browser"
+            data_dir.mkdir(parents=True, exist_ok=True)
+            new_profile.setCachePath(str(data_dir / "cache"))
+            new_profile.setPersistentStoragePath(str(data_dir / "storage"))
             
             # Register custom scheme for new window (check if already registered)
             try:

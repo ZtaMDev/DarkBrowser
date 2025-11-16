@@ -7,11 +7,13 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile
+from PyQt6.QtCore import QStandardPaths
 import os
 import sys
 import json
 import time
 import traceback
+import shutil
 from pathlib import Path
 from .tabs import TabManager
 from .home_widget import HomeWidget
@@ -331,11 +333,44 @@ class MainWindow(QMainWindow):
         self.toggle_tabs_btn.show()
 
     def clear_data(self):
+        """Clear all browser data including cache, cookies, and storage"""
         try:
+            # Clear HTTP cache
             self.profile.clearHttpCache()
+            
+            # Clear all cookies with proper callback
+            def cookies_deleted():
+                # Clear localStorage and sessionStorage
+                from PyQt6.QtCore import QTimer
+                def clear_storage():
+                    # Force clear storage paths
+                    import shutil
+                    from pathlib import Path
+                    data_dir = Path(QStandardPaths.writableLocation(QStandardPaths.StandardLocation.AppDataLocation)) / "Dark Browser"
+                    cache_dir = data_dir / "cache"
+                    storage_dir = data_dir / "storage"
+                    
+                    try:
+                        if cache_dir.exists():
+                            shutil.rmtree(cache_dir)
+                        if storage_dir.exists():
+                            shutil.rmtree(storage_dir)
+                    except Exception:
+                        pass
+                    
+                    # Show notification
+                    self.show_notification("All browser data cleared successfully", "success", 3000)
+                
+                QTimer.singleShot(200, clear_storage)
+            
+            # Delete cookies with callback
             self.profile.cookieStore().deleteAllCookies()
-        except Exception:
-            pass
+            QTimer.singleShot(100, cookies_deleted)
+            
+            self.show_notification("Clearing browser data...", "info", 2000)
+            
+        except Exception as e:
+            self.show_notification(f"Error clearing data: {str(e)}", "error", 3000)
 
     def toggle_favorites_bar(self):
         """Toggle the visibility of the favorites bar"""

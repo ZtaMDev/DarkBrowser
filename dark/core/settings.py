@@ -11,7 +11,7 @@ DEFAULTS = {
     "pinned": [
         {"title": "ChatGPT", "url": "https://chatgpt.com", "icon": "https://chat.openai.com/favicon.ico"},
         {"title": "GitHub", "url": "https://github.com", "icon": "https://github.githubassets.com/favicons/favicon.png"},
-        {"title": "MDN", "url": "https://developer.mozilla.org", "icon": "https://developer.mozilla.org/favicon-48x48.cbbd161b.png"},
+        {"title": "Stack Overflow", "url": "https://stackoverflow.com", "icon": "https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico"},
     ],
 }
 

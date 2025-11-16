@@ -1,6 +1,6 @@
 import sys, traceback, os
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import QCoreApplication, Qt
+from PyQt6.QtCore import Qt, QCoreApplication
 from dark.app import DarkApp
 
 def main():
@@ -24,6 +24,15 @@ def main():
         pass
     
     app = QApplication(sys.argv)
+    
+    # Configure application for 2FA compatibility
+    app.setQuitOnLastWindowClosed(True)
+    
+    # Set application name and version for better compatibility
+    app.setApplicationName("Dark Browser")
+    app.setApplicationVersion("1.0.1")
+    app.setOrganizationName("Dark Browser")
+    app.setOrganizationDomain("darkbrowser.local")
     
     # Set application icon
     try:

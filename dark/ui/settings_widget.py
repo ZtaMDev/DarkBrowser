@@ -70,6 +70,27 @@ class SettingsWidget(QWidget):
         welcome_btn.clicked.connect(self._show_welcome_page)
         row5.addWidget(welcome_btn, 1)
         inner.addLayout(row5)
+        
+        # Data Management
+        row6 = _row("Data Management")
+        clear_cache_btn = QPushButton("Clear Cache & Cookies")
+        clear_cache_btn.setStyleSheet("""
+            QPushButton {
+                background: #ef4444;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-size: 13px;
+                font-weight: 500;
+            }
+            QPushButton:hover {
+                background: #dc2626;
+            }
+        """)
+        clear_cache_btn.clicked.connect(self._clear_data)
+        row6.addWidget(clear_cache_btn, 1)
+        inner.addLayout(row6)
         # Keyboard Shortcuts
         shortcuts_frame = QFrame()
         shortcuts_frame.setStyleSheet("QFrame{background:#141821;border:1px solid rgba(255,255,255,.06);border-radius:16px}")
