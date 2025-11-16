@@ -173,7 +173,7 @@ class DownloadItemWidget(QFrame):
             try:
                 actual_size = os.path.getsize(path)
                 size_str = self._format_size(actual_size)
-                self.state_lbl.setText(f"Completado • {size_str}")
+                self.state_lbl.setText(f"Completed • {size_str}")
             except Exception:
                 self.state_lbl.setText(state)
         else:
@@ -207,7 +207,7 @@ class DownloadsWidget(QWidget):
         layout.setSpacing(16)
         
         # Title
-        title = QLabel("Historial de Descargas")
+        title = QLabel("Download History")
         title.setStyleSheet("""
             QLabel {
                 color: #e5e7eb;
@@ -239,7 +239,7 @@ class DownloadsWidget(QWidget):
         self.body_l.setSpacing(8)
         
         # Empty state message
-        self.empty_label = QLabel("No hay descargas en el historial")
+        self.empty_label = QLabel("No downloads in history")
         self.empty_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.empty_label.setStyleSheet("""
             QLabel {

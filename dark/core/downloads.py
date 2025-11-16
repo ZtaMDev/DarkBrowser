@@ -78,7 +78,7 @@ class DownloadsManager(QObject):
             if item:
                 item.state = "interrupted"
                 if hasattr(self, '_notify_callback'):
-                    self._notify_callback(f"Descarga interrumpida: {item.name}", "error")
+                    self._notify_callback(f"Download interrupted: {item.name}", "error")
 
     def _finish(self, did: str, req: QWebEngineDownloadRequest):
         item = next((x for x in self._items if x.id == did), None)
@@ -93,11 +93,11 @@ class DownloadsManager(QObject):
         # Notify download finished
         if hasattr(self, '_notify_callback'):
             if item.state == "completed":
-                self._notify_callback(f"Descarga completada: {item.name}", "success")
+                self._notify_callback(f"Download completed: {item.name}", "success")
             elif item.state == "cancelled":
-                self._notify_callback(f"Descarga cancelada: {item.name}", "warning")
+                self._notify_callback(f"Download cancelled: {item.name}", "warning")
             else:
-                self._notify_callback(f"Descarga fallida: {item.name}", "error")
+                self._notify_callback(f"Download failed: {item.name}", "error")
         # Also notify for UI update
         if hasattr(self, '_notify_callback'):
             self._notify_callback("download_finished", "download_update")
@@ -167,14 +167,14 @@ class DownloadsManager(QObject):
                 
                 # Notify download completed
                 if hasattr(self, '_notify_callback'):
-                    self._notify_callback(f"Imagen descargada: {filename}", "success")
+                    self._notify_callback(f"Image downloaded: {filename}", "success")
                 
                 return True
         except Exception as e:
             print(f"Error downloading image: {e}")
             # Notify download error
             if hasattr(self, '_notify_callback'):
-                self._notify_callback(f"Error al descargar imagen: {str(e)}", "error")
+                self._notify_callback(f"Error downloading image: {str(e)}", "error")
             return False
 
     # Provider for scheme
