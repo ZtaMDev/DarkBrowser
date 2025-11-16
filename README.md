@@ -3,6 +3,9 @@ Dark Browser es un navegador web que funciona bien(no) y esta hecho en python(us
 
 Es un proyecto simple(muy simple) que simplemente usa python y PyQt6 y su "PyQt6-WebEngine" que es basicamente chromiun pero para interfaz de usuario en python con PyQt6, sobra decir que el proyecto es open source, y bueno aqui un resumen de sus 'features' si es que se les puede llamar asi...
 
+<img width="1142" height="672" alt="imagen" src="https://github.com/user-attachments/assets/bd90192d-b548-4fa7-b6a6-f3ba346aebcb" />
+
+
 ## ADVERTENCIA
 
 No es recomendable usarlo con cuentas personales y demas es solo un `pointless software` osea que no creo mantenerlo todo el tiempo a no ser que se vuelva popular y tampoco creo que sea muy popular o util por dios esta hecho en python con PyQt, cuando deberia haberse hecho con electron.js, pero tengo muy poco tiempo para romperme el cerebro con la estupides de no poder centrar un `div`, asi que eso.
