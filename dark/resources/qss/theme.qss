@@ -1,0 +1,95 @@
+QWidget { background: #0f1115; color: #e5e7eb; font: 14px 'Segoe UI', system-ui, sans-serif; }
+
+/* Navbar */
+#NavBar { background: rgba(20,24,33,.65); border-bottom: 1px solid rgba(255,255,255,.06); }
+QLineEdit { height: 36px; background: #0e131b; color: #e5e7eb; border-radius: 12px; padding: 0 14px; border: 1px solid rgba(255,255,255,.08); }
+QPushButton { color: #e5e7eb; background: transparent; border: 0; border-radius: 8px; outline: none; }
+QPushButton:hover { background: rgba(255,255,255,.08); }
+QPushButton:pressed { background: rgba(255,255,255,.15); }
+QPushButton:focus { border: none; outline: none; }
+
+/* Tabs list */
+QListWidget { background: #141821; border: none; outline: none; }
+QListWidget::item { margin: 6px 2px; padding: 0; border: none; }
+QListWidget::item:selected { background: transparent; border: none; }
+QListWidget::item:focus { background: transparent; border: none; outline: none; }
+#TabItem { background: transparent; border-radius: 0; padding: 0; min-height: 32px; }
+#TabItem[class="active"] { background: rgba(255,255,255,.06); border-left: 3px solid #3b82f6; }
+QListWidget::item:hover #TabItem { background: rgba(255,255,255,.06); }
+#TabItem QLabel { background: transparent; color: #e5e7eb; font-size: 13px; }
+#CloseBtn { background: transparent; border: 0; border-radius: 6px; padding: 0px; }
+#CloseBtn:hover { background: rgba(255,255,255,.12); }
+
+/* Cards */
+QFrame#Card { background:#141821; border:1px solid rgba(255,255,255,.08); border-radius:18px; }
+
+/* Downloads progress */
+QProgressBar { height: 10px; background:#0e131b; border: 1px solid rgba(255,255,255,.08); border-radius: 6px; }
+QProgressBar::chunk { background: #3b82f6; border-radius: 6px; }
+
+/* Dock titles */
+QDockWidget { titlebar-close-icon: url(none); titlebar-normal-icon: url(none); }
+QDockWidget::title { background: #141821; padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,.06); }
+
+/* Buttons primary */
+.Primary { background:#3b82f6; color:white; border-radius:12px; padding: 10px 16px; }
+.Primary:hover { background:#2563eb; }
+
+/* Dialog */
+QDialog { background: #141821; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 20px; min-width: 400px; min-height: 200px; }
+
+/* Dialog inputs */
+QDialog QLineEdit { height: 36px; background: #0e131b; color: #e5e7eb; border-radius: 8px; padding: 8px 12px; border: 1px solid rgba(255,255,255,.15); margin: 4px 0; }
+QDialog QLineEdit:focus { border-color: rgba(59,130,246,.6); }
+
+/* Favorites Bar */
+#FavoritesBar {
+    background: #141821;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+#FavoriteButton {
+    background: transparent;
+    color: #e5e7eb;
+    border: none;
+    border-radius: 0;
+    padding: 2px 6px;
+    margin: 0 1px;
+    font-size: 11px;
+    text-align: left;
+    min-height: 16px;
+    max-width: 100px;
+}
+
+#FavoriteButton:hover {
+    background: rgba(255,255,255,.06);
+}
+
+#StarBtn {
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+}
+
+#StarBtn:hover {
+    background: rgba(156, 163, 175, 0.1);
+}
+
+/* Dialog buttons */
+.QDialog QPushButton { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 12px 20px; min-height: 20px; font-size: 13px; }
+.QDialog QPushButton:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.25); }
+.QDialog QPushButton:pressed { background: rgba(255,255,255,.25); }
+
+/* Mini button */
+.Mini { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; }
+.Mini:hover { background: rgba(255,255,255,.15); }
+
+/* Pinned tile */
+.PinnedTile { background:#0e131b; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px; }
+.PinnedTile:hover { border-color: rgba(59,130,246,.6); background: rgba(59,130,246,.08); }
+.PinnedTile:focus { border: 1px solid rgba(255,255,255,.08); outline: none; }
+.PinnedTile:focus:hover { border-color: rgba(59,130,246,.6); background: rgba(59,130,246,.08); }
+#AddPinBtn { background: transparent; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; min-height: 80px; min-width: 80px; }
+#AddPinBtn:hover { border-color: rgba(59,130,246,.6); background: rgba(59,130,246,.08); }
+#AddPinBtn:focus { border: 1px solid rgba(255,255,255,.08); outline: none; }
+#AddPinBtn:focus:hover { border-color: rgba(59,130,246,.6); background: rgba(59,130,246,.08); }
